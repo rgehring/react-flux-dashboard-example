@@ -15,6 +15,18 @@ module.exports = {
   init: function() {
     localStorage.clear();
 
+    // seed sessions
+    localStorage.setItem('session', JSON.stringify({
+      user: {
+        id: 'u_1',
+        name: 'cool_guy_1',
+        pic_url: 'https://github.com/identicons/1337.png?s=50',
+        email: 'cool_guy_1@us.redbullmediahouse.com',
+        created_at: Date.now() - 99999
+      },
+      secure_token: 'some_token_for_auth',
+    });
+
     // seed users
     localStorage.setItem('users', JSON.stringify([
       {

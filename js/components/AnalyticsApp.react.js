@@ -10,18 +10,31 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+var Login = require("./components/pages/login") ;
 var React = require('react');
-//var ThreadSection = require('./ThreadSection.react');
+var Router = require('react-router');
+var { Route, RouteHandler, Link } = Router;
 
 var AnalyticsApp = React.createClass({
-
+  getInitialState: function() {
+    return {
+      isLoggedIn: false;
+    }                 
+  },
   render: function() {
-    return (
-      <div className="analytics-app">
-      </div>
-    );
+    if ( this.state.isLoggedIn ) {
+      return (
+        <div className="analytics-app">
+          <RouteHandler/>
+        </div>
+      );
+    } else {
+      return (
+        <div className="analytics-app">
+        </div>
+      );
+    }
   }
-
 });
 
 module.exports = AnalyticsApp;

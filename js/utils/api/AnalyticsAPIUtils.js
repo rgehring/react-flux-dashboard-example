@@ -19,33 +19,44 @@ module.exports = {
     AnalyticsServerActionCreators.listCharts(response);
   },
   listReports: function(team_slug) {
-    // simulate retrieving data from an API
     var response = JSON.parse(localStorage.getItem('reports'));
-    // simulate success callback
     AnalyticsServerActionCreators.listReports(response);
   },
   listSession: function(message, threadName) {
-    // simulate writing to a database
-    var response = JSON.parse(localStorage.getItem('reports'));
-    // simulate success callback
-    AnalyticsServerActionCreators.listReports(response);
+    var response = JSON.parse(localStorage.getItem('session'));
+    if response {
+      AnalyticsServerActionCreators.listSession(response);
+    } 
   },
   listTeams: function() {
-    // simulate retrieving data from an API
     var response = JSON.parse(localStorage.getItem('reports'));
-    // simulate success callback
     AnalyticsServerActionCreators.listTeams(response);
   },
   createSession: function(message, threadName) {
-    // simulate writing to a database
-    var response = JSON.parse(localStorage.getItem('reports'));
+    // simulate successful create action on server
+    localStorage.setItem('session', JSON.stringify({
+      user: {
+        id: 'u_1',
+        name: 'cool_guy_1',
+        pic_url: 'https://github.com/identicons/1337.png?s=50',
+        email: 'cool_guy_1@us.redbullmediahouse.com',
+        created_at: Date.now() - 99999
+      },
+      secure_token: 'some_token_for_auth',
+    });
+    //simulate api response
+    var response = JSON.parse(localStorage.getItem('session'));
     // simulate success callback
-    AnalyticsServerActionCreators.listReports(response);
+    AnalyticsServerActionCreators.createSession(response);
   },
   destroySession: function(message, threadName) {
-    // simulate writing to a database
-    var response = JSON.parse(localStorage.getItem('reports'));
-    // simulate success callback
-    AnalyticsServerActionCreators.listReports(response);
+    // simulate successful delete action on server
+    if (localStorage.getItem("username") !== null) {
+      localStorage.setItem('session', null); 
+    }
+    // simulate api response
+    var response = JSON.parse(localStorage.getItem('session'));
+    // simulate callback
+    AnalyticsServerActionCreators.destroySession(response);
   }
 };
