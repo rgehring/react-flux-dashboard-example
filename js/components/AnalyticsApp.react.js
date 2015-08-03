@@ -1,36 +1,50 @@
-/**
- * This file is provided by Facebook for testing and evaluation purposes
- * only. Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
 
-var Login = require("./components/pages/login") ;
 var React = require('react');
 var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
+var Route = Router.Route ;
+var RouteHandler = Router.RouteHandler ;
+var Link = Router.Link ;
+
+var Login = require("./pages/login/Page.react") ;
+var LoginStore = require( '../stores/LoginStore');
 
 var AnalyticsApp = React.createClass({
+ 
   getInitialState: function() {
-    return {
-      isLoggedIn: false;
-    }                 
+    return this.getStateFromStores();
   },
+
+  getStateFromStores: function() {
+    return {
+      userLoggedIn: LoginStore.isLoggedIn(),
+      user: LoginStore.getUser(),
+      jwt: LoginStore.getJwt()
+    };
+  },
+
+  _onChange: function() {
+    this.setState( this.getStateFromStores() );
+  },
+
+  componentDidMount: function() {
+    this.changeListener = this._onChange;
+    LoginStore.addChangeListener(this.changeListener);
+  },
+  componentWillUnmount: function() {
+    LoginStore.removeChangeListener(this.changeListener);
+  },
+
   render: function() {
-    if ( this.state.isLoggedIn ) {
+    if ( this.state.userLoggedIn ) {
       return (
         <div className="analytics-app">
-          <RouteHandler/>
+          <h1> You logged in! </h1>
         </div>
       );
     } else {
       return (
         <div className="analytics-app">
+          <Login />
         </div>
       );
     }

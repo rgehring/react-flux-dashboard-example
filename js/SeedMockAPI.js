@@ -24,8 +24,8 @@ module.exports = {
         email: 'cool_guy_1@us.redbullmediahouse.com',
         created_at: Date.now() - 99999
       },
-      secure_token: 'some_token_for_auth',
-    });
+      secure_token: 'some_token_for_auth'
+    }));
 
     // seed users
     localStorage.setItem('users', JSON.stringify([
@@ -87,7 +87,7 @@ module.exports = {
             name: 'cool_guy_1',
             pic_url: 'https://github.com/identicons/1337.png?s=50',
             email: 'cool_guy_1@us.redbullmediahouse.com',
-            created_at: Date.now() - 99999
+            created_at: Date.now() - 99999,
             team_role: "admin"
           },
           {
@@ -259,7 +259,7 @@ module.exports = {
               }
             ]
           }
-        }
+        },
         {
           id: 'c_2',
           page: 1,
@@ -294,7 +294,7 @@ module.exports = {
               }
             ]
           }
-        }
+        },
         {
           id: 'c_3',
           page: 1,
@@ -329,7 +329,7 @@ module.exports = {
               }
             ]
           }
-        }
+        },
         {
           id: 'c_4',
           page: 1,
@@ -364,7 +364,7 @@ module.exports = {
               }
             ]
           }
-        }
+        },
         {
           id: 'c_5',
           page: 1,
@@ -399,7 +399,7 @@ module.exports = {
               }
             ]
           }
-        }
+        },
         {
           id: 'c_6',
           page: 1,

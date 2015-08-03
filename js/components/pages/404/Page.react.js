@@ -10,18 +10,17 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-var keyMirror = require('keymirror');
+var React = require('react');
 
-module.exports = {
 
-  ActionTypes: keyMirror({
-    CREATE_SESSION_SUCCESS: null,
-    DESTROY_SESSION: null,
-    LIST_CHARTS: null,
-    LIST_REPORTS: null,
-    LIST_SESSION: null,
-    LIST_TEAMS: null,
-    LOGIN_ATTEMPT: null
-  })
+var Page = React.createClass({
+  render: function() {
+    return (
+      <div className="missing-page">
+        <h1> Hello  </h1>
+      </div>
+    );
+  }
+});
 
-};
+module.exports = Page;

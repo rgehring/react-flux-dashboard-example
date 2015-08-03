@@ -3,16 +3,21 @@
 // React and the Router
 var React = require('react');
 var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
-var routes = require('./routes')
+
+var Route = Router.Route ;
+var DefaultRoute = Router.DefaultRoute ;
+var NotFoundRoute = Router.NotFoundRoute ;
+var RouteHandler = Router.RouteHandler ;
+var Link = Router.Link ;
+
 // pages
 var AnalyticsApp = require('./components/AnalyticsApp.react');
-var Home = require("./components/pages/home") ;
-var Login = require("./components/pages/login") ;
-var Report = require("./components/pages/report") ;
-var Team = require("./components/pages/team") ;
-var 404Page = require("./components/pages/404") ;
-var 500Page = require("./components/pages/500") ;
+var Home = require("./components/pages/home/Page.react") ;
+var Login = require("./components/pages/login/Page.react") ;
+var Report = require("./components/pages/report/Page.react") ;
+var Team = require("./components/pages/team/Page.react") ;
+var MissingPage = require("./components/pages/404/Page.react") ;
+var ErrorPage = require("./components/pages/500/Page.react") ;
 // Utils
 var SeedMockAPI = require('./SeedMockAPI');
 
@@ -21,7 +26,7 @@ var routes = (
   <Route handler={AnalyticsApp} name="app" path="/">
 
     <DefaultRoute handler={Home}/>
-    <NotFoundRoute handler={404Page}/>
+    <NotFoundRoute handler={MissingPage}/>
 
     <Route handler={Team}>
       <Route name="teams" handler={Team}/>

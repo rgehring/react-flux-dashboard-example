@@ -8,7 +8,7 @@
  */
 
 
-var AnalyticsServerActionCreators = require('../actions/AnalyticsServerActionCreators');
+var AnalyticsServerActionCreators = require('../../actions/AnalyticsServerActionCreators');
 
 module.exports = {
 
@@ -24,7 +24,7 @@ module.exports = {
   },
   listSession: function(message, threadName) {
     var response = JSON.parse(localStorage.getItem('session'));
-    if response {
+    if (response) {
       AnalyticsServerActionCreators.listSession(response);
     } 
   },
@@ -32,7 +32,7 @@ module.exports = {
     var response = JSON.parse(localStorage.getItem('reports'));
     AnalyticsServerActionCreators.listTeams(response);
   },
-  createSession: function(message, threadName) {
+  createSession: function(user, password) {
     // simulate successful create action on server
     localStorage.setItem('session', JSON.stringify({
       user: {
@@ -43,11 +43,11 @@ module.exports = {
         created_at: Date.now() - 99999
       },
       secure_token: 'some_token_for_auth',
-    });
+    }));
     //simulate api response
     var response = JSON.parse(localStorage.getItem('session'));
     // simulate success callback
-    AnalyticsServerActionCreators.createSession(response);
+    AnalyticsServerActionCreators.createSessionSuccess(response);
   },
   destroySession: function(message, threadName) {
     // simulate successful delete action on server

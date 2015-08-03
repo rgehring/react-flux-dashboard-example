@@ -4,8 +4,6 @@
 
 var AnalyticsAppDispatcher = require('../dispatcher/AnalyticsAppDispatcher');
 var AnalyticsConstants = require('../constants/AnalyticsConstants');
-var AnalyticsWebAPIUtils = require('../utils/AnalyticsWebAPIUtils');
-var AnalyticsMessageUtils = require('../utils/AnalyticsMessageUtils');
 
 var ActionTypes = AnalyticsConstants.ActionTypes;
 
@@ -31,21 +29,21 @@ module.exports = {
       type: ActionTypes.LIST_SESSION,
       data: response
     });
-  }
+  },
   listTeams: function(response) {
     // dispatch the action!
     AnalyticsAppDispatcher.dispatch({
       type: ActionTypes.LIST_TEAMS,
       data: response
     });
-  }
-  createSession: function(response) {
+  },
+  createSessionSuccess: function(response) {
     // dispatch the action!
     AnalyticsAppDispatcher.dispatch({
-      type: ActionTypes.CREATE_SESSION,
+      type: ActionTypes.CREATE_SESSION_SUCCESS,
       data: response
     });
-  }
+  },
   destroySession: function(response) {
     // dispatch the action!
     AnalyticsAppDispatcher.dispatch({
