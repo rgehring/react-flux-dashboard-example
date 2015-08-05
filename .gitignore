@@ -1,5 +1,5 @@
-# bundle
-js/bundle.js
+# allow bundle for gh pages
+#js/bundle.js
 
 # swap files
 *.swp

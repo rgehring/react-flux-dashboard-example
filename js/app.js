@@ -27,6 +27,10 @@ var routes = (
 
     <DefaultRoute handler={Home}/>
     <NotFoundRoute handler={MissingPage}/>
+    
+    <Route handler={Home}>
+      <Route name="home" handler={Home}/>
+    </Route>
 
     <Route handler={Team}>
       <Route name="teams" handler={Team}/>
