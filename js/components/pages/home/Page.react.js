@@ -45,7 +45,9 @@ var Page = React.createClass({
             <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
           </tr>
         </table>
+        <a href="https://wiki.jenkins-ci.org/download/attachments/68387008/2_Three_columns_view.png"> Our team can maintain a CI Board like THIS for each integratin above </a>
       </div>
+
     );
   }
 });
