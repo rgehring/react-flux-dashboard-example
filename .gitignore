@@ -1,6 +1,8 @@
 # allow bundle for gh pages
 #js/bundle.js
 
+.DS_STORE
+
 # swap files
 *.swp
 *.swo
