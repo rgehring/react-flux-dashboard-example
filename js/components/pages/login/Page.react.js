@@ -17,15 +17,20 @@ var Page = React.createClass( {
 
   render() {
     return (
-      <div className="login-form">
-        <h3> Login  </h3>
-        <form role="form" onSubmit={this.handleSubmit}   >
-          <div className="form-group" >
-            <input type="text"  placeholder="Username" ref="user"/>
-            <input type="password" placeholder="Password" ref="password" />
+      <div className="login-page">a
+        <div className="login-box">
+          <form className="login-form-container" role="form" onSubmit={this.handleSubmit}   >
+            <div className="login-form" >
+              <input type="text"  placeholder="Username" ref="user"/>
+              <input type="password" placeholder="Password" ref="password" />
+              <input type="submit" value="Log In!" ></input>
+            </div>
+          </form>
+          <div className="logo-box">
+            <h2 className="whiteText"> Red Bull  </h2>
+            <h2 className="redText"> Analytics  </h2>
           </div>
-          <button type="submit" >Submit</button>
-        </form>
+        </div>
       </div>
     );
   }

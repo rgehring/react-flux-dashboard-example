@@ -22,7 +22,29 @@ var Page = React.createClass({
         <h1> Home  </h1>
         <h1>Dashboards</h1>
         <Link  to="reports" params={{ report_slug: "hello" }} > A Report   </Link>
-        <h1>CI</h1>
+        <h1>CI Badges for Instrumentation Projects</h1>
+        <table>
+          <tr>
+            <td>  <a href="https://www.github.com/circleci/mongofinil"   > Adobe / Web  </a>  </td>
+            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
+          </tr>
+          <tr>
+            <td>  <a href="https://www.github.com/circleci/mongofinil"   > Adobe / iOS  </a>  </td>
+            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
+          </tr>
+          <tr>
+            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Android  </a>  </td>
+            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
+          </tr>
+          <tr>
+            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Apple TV  </a>  </td>
+            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
+          </tr>
+          <tr>
+            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Roku  </a>  </td>
+            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
+          </tr>
+        </table>
       </div>
     );
   }
