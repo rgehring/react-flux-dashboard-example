@@ -17,7 +17,7 @@ var Page = React.createClass({
   render: function() {
     return (
       <div className="missing-page">
-        <h1> Hello  </h1>
+        <h1> 500  </h1>
       </div>
     );
   }

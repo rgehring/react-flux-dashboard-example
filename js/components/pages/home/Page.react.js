@@ -11,13 +11,18 @@
  */
 
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link ;
 
 
 var Page = React.createClass({
   render: function() {
     return (
       <div className="missing-page">
-        <h1> Hello  </h1>
+        <h1> Home  </h1>
+        <h1>Dashboards</h1>
+        <Link  to="reports" params={{ report_slug: "hello" }} > A Report   </Link>
+        <h1>CI</h1>
       </div>
     );
   }

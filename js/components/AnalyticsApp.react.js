@@ -37,9 +37,7 @@ var AnalyticsApp = React.createClass({
   render: function() {
     if ( this.state.userLoggedIn ) {
       return (
-        <div className="analytics-app">
-          <h1> You logged in! </h1>
-        </div>
+        <RouteHandler/>
       );
     } else {
       return (
