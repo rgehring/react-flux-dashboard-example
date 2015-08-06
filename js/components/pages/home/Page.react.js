@@ -14,38 +14,46 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link ;
 
+var ReportStore = require( '../../../stores/ReportStore');
+var RequestActionCreators = require('../../../actions/RequestActionCreators');
+
+
+var ReportListWrapper = React.createClass({
+  render: function() {
+    return <li> <Link to='reports' params={{report_slug: this.props.data.slug}}>  {this.props.data.title} </Link> </li>;
+  }
+});
 
 var Page = React.createClass({
+
+  getInitialState: function() {
+    return this.getStateFromStores();
+  },
+  getStateFromStores: function() {
+    return {
+      reports: ReportStore.getReportList() 
+    };
+  },
+  _onChange: function() {
+    this.setState( this.getStateFromStores() );
+  },
+  componentDidMount: function() {
+    this.changeListener = this._onChange;
+    ReportStore.addChangeListener(this.changeListener);
+    
+    RequestActionCreators.listReports( )  ;
+  },
+
   render: function() {
     return (
       <div className="missing-page">
         <h1> Home  </h1>
         <h1>Dashboards</h1>
-        <Link  to="reports" params={{ report_slug: "hello" }} > A Report   </Link>
-        <h1>CI Badges for Instrumentation Projects</h1>
-        <table>
-          <tr>
-            <td>  <a href="https://www.github.com/circleci/mongofinil"   > Adobe / Web  </a>  </td>
-            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
-          </tr>
-          <tr>
-            <td>  <a href="https://www.github.com/circleci/mongofinil"   > Adobe / iOS  </a>  </td>
-            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
-          </tr>
-          <tr>
-            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Android  </a>  </td>
-            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
-          </tr>
-          <tr>
-            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Apple TV  </a>  </td>
-            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
-          </tr>
-          <tr>
-            <td>  <a href="https://www.github.com/circleci/mongofinil"   >  Adobe / Roku  </a>  </td>
-            <td>   <a href="https://circleci.com/gh/circleci/mongofinil"   > <img src="https://circleci.com/gh/circleci/mongofinil.svg?&style=shield"/> </a>    </td>
-          </tr>
-        </table>
-        <a href="https://wiki.jenkins-ci.org/download/attachments/68387008/2_Three_columns_view.png"> Our team can maintain a CI Board like THIS for each integratin above </a>
+          <ul>
+            {this.state.reports.map(function(report) {
+               return <ReportListWrapper key={report.id} data={report}/>;
+            })}
+          </ul>
       </div>
 
     );

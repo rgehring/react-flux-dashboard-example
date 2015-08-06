@@ -107,6 +107,7 @@ module.exports = {
     localStorage.setItem('reports', JSON.stringify([
       {
         id: 'r_1',
+        slug: "global_media_kpis",
         team_id: 't_1',
         title: "Global Media KPI's",
         description: 'Global media KPI reporting',
@@ -143,6 +144,7 @@ module.exports = {
       {
         id: 'r_2',
         team_id: 't_1',
+        slug: 'country_media_kpis',
         title: "Country Media KPI's",
         description: 'Country-level media KPI reporting',
         github_url: 'https://github.com/rgehring/motivation_otd',
@@ -178,6 +180,7 @@ module.exports = {
       {
         id: 'r_3',
         team_id: 't_2',
+        slug: 'global_can_kpis',
         title: "Global Can KPI's",
         description: 'Global can KPI reporting',
         github_url: 'https://github.com/rgehring/motivation_otd',

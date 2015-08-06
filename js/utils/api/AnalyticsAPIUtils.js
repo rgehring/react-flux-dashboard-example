@@ -18,7 +18,7 @@ module.exports = {
     // simulate success callback
     AnalyticsServerActionCreators.listCharts(response);
   },
-  listReports: function(team_slug) {
+  listReports: function() {
     var response = JSON.parse(localStorage.getItem('reports'));
     AnalyticsServerActionCreators.listReports(response);
   },
