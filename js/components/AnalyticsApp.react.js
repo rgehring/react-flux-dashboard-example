@@ -6,7 +6,7 @@ var RouteHandler = Router.RouteHandler ;
 var Link = Router.Link ;
 
 var Login = require("./pages/login/Page.react") ;
-var LoginStore = require( '../stores/LoginStore');
+var SessionStore = require( '../stores/SessionStore');
 
 var AnalyticsApp = React.createClass({
  
@@ -16,9 +16,9 @@ var AnalyticsApp = React.createClass({
 
   getStateFromStores: function() {
     return {
-      userLoggedIn: LoginStore.isLoggedIn(),
-      user: LoginStore.getUser(),
-      jwt: LoginStore.getJwt()
+      userLoggedIn: SessionStore.isLoggedIn(),
+      user: SessionStore.getUser(),
+      jwt: SessionStore.getJwt()
     };
   },
 
@@ -28,10 +28,10 @@ var AnalyticsApp = React.createClass({
 
   componentDidMount: function() {
     this.changeListener = this._onChange;
-    LoginStore.addChangeListener(this.changeListener);
+    SessionStore.addChangeListener(this.changeListener);
   },
   componentWillUnmount: function() {
-    LoginStore.removeChangeListener(this.changeListener);
+    SessionStore.removeChangeListener(this.changeListener);
   },
 
   render: function() {

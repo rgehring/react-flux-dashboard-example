@@ -14,13 +14,9 @@ module.exports = {
 
   listCharts: function(team_slug, report_slug) {
     // simulate retrieving data from an API
-    var response = JSON.parse(localStorage.getItem('charts'));
+    var response = JSON.parse(localStorage.getItem('listChartsSuccessResponse'));
     // simulate success callback
     AnalyticsServerActionCreators.listCharts(response);
-  },
-  listReports: function() {
-    var response = JSON.parse(localStorage.getItem('reports'));
-    AnalyticsServerActionCreators.listReports(response);
   },
   listSession: function(message, threadName) {
     var response = JSON.parse(localStorage.getItem('session'));
@@ -29,34 +25,19 @@ module.exports = {
     } 
   },
   listTeams: function() {
-    var response = JSON.parse(localStorage.getItem('reports'));
+    var response = JSON.parse(localStorage.getItem('listTeamsHomeResponse'));
     AnalyticsServerActionCreators.listTeams(response);
   },
   createSession: function(user, password) {
-    // simulate successful create action on server
-    localStorage.setItem('session', JSON.stringify({
-      user: {
-        id: 'u_1',
-        name: 'cool_guy_1',
-        pic_url: 'https://github.com/identicons/1337.png?s=50',
-        email: 'cool_guy_1@us.redbullmediahouse.com',
-        created_at: Date.now() - 99999
-      },
-      secure_token: 'some_token_for_auth',
-    }));
-    //simulate api response
+    localStorage.setItem('session',  (localStorage.getItem('createSessionSuccessResponse')));
     var response = JSON.parse(localStorage.getItem('session'));
-    // simulate success callback
     AnalyticsServerActionCreators.createSessionSuccess(response);
   },
   destroySession: function(message, threadName) {
-    // simulate successful delete action on server
-    if (localStorage.getItem("username") !== null) {
+    if (localStorage.getItem("session") !== null) {
       localStorage.setItem('session', null); 
     }
-    // simulate api response
     var response = JSON.parse(localStorage.getItem('session'));
-    // simulate callback
     AnalyticsServerActionCreators.destroySession(response);
   }
 };

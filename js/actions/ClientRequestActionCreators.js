@@ -6,12 +6,18 @@ var ActionTypes = AnalyticsConstants.ActionTypes;
 
 module.exports = {
 
-  listReports: function() {
+  createSession: function(user, password) {
     AnalyticsAppDispatcher.dispatch({
-      type: ActionTypes.LIST_REPORTS_REQUEST,
+      type: ActionTypes.LOGIN_ATTEMPT,
     });
-    // Here, we call the create session API util
-    AnalyticsWebAPIUtils.listReports() ;
+    AnalyticsWebAPIUtils.createSession(user, password) ;
+  },
+
+  listTeams: function() {
+    AnalyticsAppDispatcher.dispatch({
+      type: ActionTypes.LIST_TEAMS_REQUEST,
+    });
+    AnalyticsWebAPIUtils.listTeams() ;
   }
 };
 

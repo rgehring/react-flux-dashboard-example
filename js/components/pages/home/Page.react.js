@@ -14,8 +14,12 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link ;
 
-var ReportStore = require( '../../../stores/ReportStore');
-var RequestActionCreators = require('../../../actions/RequestActionCreators');
+var SessionStore = require( '../../../stores/SessionStore');
+var TeamStore = require( '../../../stores/TeamStore');
+var RequestActionCreators = require('../../../actions/ClientRequestActionCreators');
+
+
+
 
 
 var ReportListWrapper = React.createClass({
@@ -24,6 +28,22 @@ var ReportListWrapper = React.createClass({
   }
 });
 
+var TeamListWrapper = React.createClass({ 
+  render: function() {
+    return <li> 
+      <Link to='teams' params={{team_slug: this.props.data.slug}}>  {this.props.data.name}  </Link> 
+      <ul className="reportList">
+          {this.props.data.report_summary.results.map(function(report) {
+             return <ReportListWrapper key={report.id} data={report}/>;
+          })}
+      </ul>
+  
+    </li>;
+  }
+});
+
+
+
 var Page = React.createClass({
 
   getInitialState: function() {
@@ -31,7 +51,8 @@ var Page = React.createClass({
   },
   getStateFromStores: function() {
     return {
-      reports: ReportStore.getReportList() 
+      user: SessionStore.getUser(),
+      teams: TeamStore.getTeamList() 
     };
   },
   _onChange: function() {
@@ -39,19 +60,19 @@ var Page = React.createClass({
   },
   componentDidMount: function() {
     this.changeListener = this._onChange;
-    ReportStore.addChangeListener(this.changeListener);
+    TeamStore.addChangeListener(this.changeListener);
     
-    RequestActionCreators.listReports( )  ;
+    RequestActionCreators.listTeams( )  ;
   },
 
   render: function() {
     return (
-      <div className="missing-page">
+      <div className="home-page">
         <h1> Home  </h1>
-        <h1>Dashboards</h1>
+        <h1>Teams </h1>
           <ul>
-            {this.state.reports.map(function(report) {
-               return <ReportListWrapper key={report.id} data={report}/>;
+            {this.state.teams.map(function(team) {
+               return <TeamListWrapper key={team.id} data={team}/>;
             })}
           </ul>
       </div>

@@ -1,7 +1,7 @@
 // ... imports
 var React = require('react');
 var API = require('../../../utils/api/AnalyticsAPIUtils');
-var LoginActionCreators = require('../../../actions/LoginActionCreators');
+var ClientRequestActionCreators = require('../../../actions/ClientRequestActionCreators');
 
 var Page = React.createClass( {
 
@@ -12,7 +12,7 @@ var Page = React.createClass( {
     var user = React.findDOMNode(this.refs.user).value;
     var pw = React.findDOMNode(this.refs.password).value;
     // create a login action
-    LoginActionCreators.attemptLogin( user, pw )  ;
+    ClientRequestActionCreators.createSession( user, pw )  ;
   },
 
   render() {

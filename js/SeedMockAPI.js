@@ -15,222 +15,109 @@ module.exports = {
   init: function() {
     localStorage.clear();
 
-    // seed sessions
-    localStorage.setItem('session', JSON.stringify({
+    // seed sessions api response
+    localStorage.setItem('createSessionSuccessResponse', JSON.stringify({
       user: {
         id: 'u_1',
         name: 'cool_guy_1',
         pic_url: 'https://github.com/identicons/1337.png?s=50',
         email: 'cool_guy_1@us.redbullmediahouse.com',
+        teams: [
+          { 
+            name: "Media Analytics", 
+            id: "t_1",
+            slug: "media_analytics"
+          },
+          {
+            name: "Can-alytics", 
+            id: "t_2",
+            slug: "media_analytics"
+          }
+        ],
         created_at: Date.now() - 99999
       },
       secure_token: 'some_token_for_auth'
     }));
 
-    // seed users
-    localStorage.setItem('users', JSON.stringify([
-      {
-        id: 'u_1',
-        name: 'cool_guy_1',
-        pic_url: 'https://github.com/identicons/1337.png?s=50',
-        email: 'cool_guy_1@us.redbullmediahouse.com',
-        created_at: Date.now() - 99999
-      },
-      {
-        id: 'u_2',
-        name: 'cool_gal_1',
-        pic_url: 'https://github.com/identicons/1337357.png?s=50',
-        email: 'cool_gal_1@us.redbullmediahouse.com',
-        created_at: Date.now() - 99999
-      },
-      {
-        id: 'u_3',
-        name: 'cool_guy_2',
-        pic_url: 'https://github.com/identicons/13373R.png?s=50',
-        email: 'cool_guy_2@us.redbullmediahouse.com',
-        created_at: Date.now() - 99999
-      }
-    ]));
     
-    // seed teams
-    localStorage.setItem('teams', JSON.stringify([
+    // list teams 
+    localStorage.setItem('listTeamsHomeResponse', JSON.stringify([
       {
         id: 't_1',
-        team_name: 'Media Analytics',
-        members: [
-          {
-            id: 'u_2',
-            name: 'cool_gal_1',
-            pic_url: 'https://github.com/identicons/1337357.png?s=50',
-            email: 'cool_gal_1@us.redbullmediahouse.com',
-            created_at: Date.now() - 99999,
-            team_role: "admin"
-          },
-          {
-            id: 'u_3',
-            name: 'cool_guy_2',
-            pic_url: 'https://github.com/identicons/13373R.png?s=50',
-            email: 'cool_guy_2@us.redbullmediahouse.com',
-            created_at: Date.now() - 99999,
-            team_role: "readonly"
-          }
-        ],
+        name: 'Media Analytics',
+        slug: "media_analytics",
         description: 'Reporting for media analytics',
-        created_at: Date.now() - 99999
+        created_at: Date.now() - 99999,
+        report_summary: {
+          meta: {
+            total_hits: 2,
+            page: 1,
+            per_page: 10
+          },
+          results: [
+            {
+              id: 'r_1',
+              slug: "global_media_kpis",
+              title: "Global Media KPI's",
+              description: 'Global media KPI reporting',
+              github_url: 'https://github.com/rgehring/motivation_otd',
+              created_at: Date.now()
+            },
+            {
+              id: 'r_2',
+              team_id: 't_1',
+              slug: 'country_media_kpis',
+              title: "Country Media KPI's",
+              description: 'Country-level media KPI reporting',
+              github_url: 'https://github.com/rgehring/motivation_otd',
+              created_at: Date.now()
+            }
+          ]
+        }
       },
       {
         id: 't_2',
         team_name: 'Can-alytics',
-        members: [
-          {
-            id: 'u_1',
-            name: 'cool_guy_1',
-            pic_url: 'https://github.com/identicons/1337.png?s=50',
-            email: 'cool_guy_1@us.redbullmediahouse.com',
-            created_at: Date.now() - 99999,
-            team_role: "admin"
-          },
-          {
-            id: 'u_3',
-            name: 'cool_guy_2',
-            pic_url: 'https://github.com/identicons/13373R.png?s=50',
-            email: 'cool_guy_2@us.redbullmediahouse.com',
-            created_at: Date.now() - 99999,
-            team_role: "readonly"
-          }
-        ],
+        slug: "can-alytics",
         description: 'Reporting for can analytics',
-        created_at: Date.now() - 99999
-      }
-    ]));
-    // seed reports
-    localStorage.setItem('reports', JSON.stringify([
-      {
-        id: 'r_1',
-        slug: "global_media_kpis",
-        team_id: 't_1',
-        title: "Global Media KPI's",
-        description: 'Global media KPI reporting',
-        github_url: 'https://github.com/rgehring/motivation_otd',
-        created_at: Date.now(),
-        total_charts: 6,
-        layout: [
-          {
-            chart_id: 'c_1',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_2',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_3',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_4',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_5',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_6',
-            bootstrap_grid_width: 12
-          }
-        ]
-      },
-      {
-        id: 'r_2',
-        team_id: 't_1',
-        slug: 'country_media_kpis',
-        title: "Country Media KPI's",
-        description: 'Country-level media KPI reporting',
-        github_url: 'https://github.com/rgehring/motivation_otd',
-        created_at: Date.now(),
-        total_charts: 6,
-        layout: [
-          {
-            chart_id: 'c_1',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_2',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_3',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_4',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_5',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_6',
-            bootstrap_grid_width: 12
-          }
-        ]
-      },
-      {
-        id: 'r_3',
-        team_id: 't_2',
-        slug: 'global_can_kpis',
-        title: "Global Can KPI's",
-        description: 'Global can KPI reporting',
-        github_url: 'https://github.com/rgehring/motivation_otd',
-        created_at: Date.now(),
-        total_charts: 6,
-        layout: [
-          {
-            chart_id: 'c_1',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_2',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_3',
-            bootstrap_grid_width: 4
-          }, 
-          {
-            chart_id: 'c_4',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_5',
-            bootstrap_grid_width: 6
-          }, 
-          {
-            chart_id: 'c_6',
-            bootstrap_grid_width: 12
-          }
-        ]
+        created_at: Date.now() - 99999,
+        report_summary: {
+          meta: {
+            total_hits: 2,
+            page: 1,
+            per_page: 10
+          },
+          results: [
+            {
+              id: 'r_3',
+              slug: 'global_can_kpis',
+              title: "Global Can KPI's",
+              description: 'Global can KPI reporting',
+              github_url: 'https://github.com/rgehring/motivation_otd',
+              created_at: Date.now()
+            }
+          ]
+        }
       }
     ]));
 
+
     // seed charts
-    localStorage.setItem('charts', JSON.stringify( {
-      query: {
+    localStorage.setItem('listChartsSuccessResponse', JSON.stringify( {
+      meta: {
         page: 1,
         per_page: 10,
         total_pages: 1,
-        team_slug: '',
-        team_id: '',
-        report_slug: '', 
-        report_id: '',
-        results: 6
+        total_hits: 6,
+        team_slug: 'media_analytics',
+        team_id: 't_1',
+        report_slug: 'global_media_kpis', 
+        report_id: 'r_1',
       },
       charts: [ 
        {
           id: 'c_1',
-          page: 1,
+          bootstrap_grid_width: 12,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -265,7 +152,7 @@ module.exports = {
         },
         {
           id: 'c_2',
-          page: 1,
+          bootstrap_grid_width: 6,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -300,7 +187,7 @@ module.exports = {
         },
         {
           id: 'c_3',
-          page: 1,
+          bootstrap_grid_width: 6,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -335,7 +222,7 @@ module.exports = {
         },
         {
           id: 'c_4',
-          page: 1,
+          bootstrap_grid_width: 4,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -370,7 +257,7 @@ module.exports = {
         },
         {
           id: 'c_5',
-          page: 1,
+          bootstrap_grid_width: 4,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -405,7 +292,7 @@ module.exports = {
         },
         {
           id: 'c_6',
-          page: 1,
+          bootstrap_grid_width: 4,
           created_at: Date.now() - 99999,
           sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
           library: "nvd3",
@@ -439,5 +326,32 @@ module.exports = {
           }
         }
       ]}));
+
+    // seed users ---  brainstorm only, not implemented
+    localStorage.setItem('listUsersSuccessResponse', JSON.stringify([
+      {
+        id: 'u_1',
+        name: 'cool_guy_1',
+        pic_url: 'https://github.com/identicons/1337.png?s=50',
+        email: 'cool_guy_1@us.redbullmediahouse.com',
+        created_at: Date.now() - 99999
+      },
+      {
+        id: 'u_2',
+        name: 'cool_gal_1',
+        pic_url: 'https://github.com/identicons/1337357.png?s=50',
+        email: 'cool_gal_1@us.redbullmediahouse.com',
+        created_at: Date.now() - 99999
+      },
+      {
+        id: 'u_3',
+        name: 'cool_guy_2',
+        pic_url: 'https://github.com/identicons/13373R.png?s=50',
+        email: 'cool_guy_2@us.redbullmediahouse.com',
+        created_at: Date.now() - 99999
+      }
+    ]));
+
+
   }
 };
