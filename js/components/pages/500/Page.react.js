@@ -16,7 +16,7 @@ var React = require('react');
 var Page = React.createClass({
   render: function() {
     return (
-      <div className="missing-page">
+      <div className="error-page">
         <h1> 500  </h1>
       </div>
     );

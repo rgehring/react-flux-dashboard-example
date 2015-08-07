@@ -11,13 +11,71 @@
  */
 
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link ;
 
+var SessionStore = require( '../../../stores/SessionStore');
+var ChartStore = require( '../../../stores/ChartStore');
+var RequestActionCreators = require('../../../actions/ClientRequestActionCreators');
+
+var ChartListWrapper = React.createClass({ 
+  render: function() {
+    var bootStrapGridClass="col-md-".concat(this.props.data.bootstrap_grid_width) ;
+    return ( <li className={bootStrapGridClass } > 
+      Loading...
+    </li>) ;
+  }
+});
+
+var ChartPaginator = React.createClass({
+  
+  sendNextPageRequest: function() {
+    console.log("here i create the action for another page request"); 
+  },
+  
+  render: function() {
+    var self = this;
+    return  ( <button className="chart-paginator" onClick={self.sendNextPageRequest }>...</button>  )       
+  }
+});
 
 var Page = React.createClass({
+  mixins: [ Router.State ],
+  
+  getInitialState: function() {
+    return this.getStateFromStores();
+  },
+
+  getStateFromStores: function() {
+    return {
+      user: SessionStore.getUser(),
+      charts: ChartStore.getChartList() 
+    };
+  },
+
+  _onChange: function() {
+    this.setState( this.getStateFromStores() );
+  },
+
+  componentDidMount: function() {
+    this.changeListener = this._onChange;
+    ChartStore.addChangeListener(this.changeListener);
+    var teamSlug = this.getParams().team_slug ; 
+    var reportSlug = this.getParams().report_slug ; 
+    RequestActionCreators.listCharts( teamSlug, reportSlug, 1 )  ;
+  },
+
   render: function() {
     return (
-      <div className="missing-page">
-        <h1> Report  </h1>
+      <div className="report-page">
+        <h1> Report Title  </h1>
+        <ul className="chart-list">
+          { this.state.charts.map(function(chart) {
+             return <ChartListWrapper key={chart.id} data={chart}/>;
+          })}
+        </ul>
+
+        <ChartPaginator />
       </div>
     );
   }

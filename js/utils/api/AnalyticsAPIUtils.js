@@ -12,7 +12,7 @@ var AnalyticsServerActionCreators = require('../../actions/AnalyticsServerAction
 
 module.exports = {
 
-  listCharts: function(team_slug, report_slug) {
+  listCharts: function(team_slug, report_slug, page) {
     // simulate retrieving data from an API
     var response = JSON.parse(localStorage.getItem('listChartsSuccessResponse'));
     // simulate success callback

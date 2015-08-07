@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         id: 't_2',
-        team_name: 'Can-alytics',
+        name: 'Can-alytics',
         slug: "can-alytics",
         description: 'Reporting for can analytics',
         created_at: Date.now() - 99999,
