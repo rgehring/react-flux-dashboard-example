@@ -25,6 +25,16 @@ var ChartStore = assign({}, EventEmitter.prototype, {
   getChartList() {
     return this._chartList;
   },
+  getChart(chartId) {
+    var self = this ;
+      for (var i = 0; i < self._chartList.length; i++) {
+        if (self._chartList[i].id === chartId) {
+          var out = self._chartList[i];
+          return out ;
+        }
+      }   
+    return null;
+  }
 });
 // set initial state
 ChartStore._chartList = [];
