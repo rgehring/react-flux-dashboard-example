@@ -22,9 +22,9 @@ var TeamStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
   // Just getters for the properties it got from the action.
-  getTeamList() {
+  getTeamList: function() {
     return this._teamList;
-  },
+  }
 });
 // set initial state
 TeamStore._teamList = [];
