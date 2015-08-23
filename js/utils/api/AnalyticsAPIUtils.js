@@ -14,7 +14,7 @@ module.exports = {
 
   listCharts: function(team_slug, report_slug, page) {
     // simulate retrieving data from an API
-    var response = JSON.parse(localStorage.getItem('listChartsSuccessResponse'));
+    var response = JSON.parse(localStorage.getItem('listChartsSuccess'));
     // simulate success callback
     AnalyticsServerActionCreators.listCharts(response);
   },
@@ -25,11 +25,11 @@ module.exports = {
     } 
   },
   listTeams: function() {
-    var response = JSON.parse(localStorage.getItem('listTeamsHomeResponse'));
+    var response = JSON.parse(localStorage.getItem('listTeamsSuccess'));
     AnalyticsServerActionCreators.listTeams(response);
   },
   createSession: function(user, password) {
-    localStorage.setItem('session',  (localStorage.getItem('createSessionSuccessResponse')));
+    localStorage.setItem('session',  (localStorage.getItem('createSessionSuccess')));
     var response = JSON.parse(localStorage.getItem('session'));
     AnalyticsServerActionCreators.createSessionSuccess(response);
   },

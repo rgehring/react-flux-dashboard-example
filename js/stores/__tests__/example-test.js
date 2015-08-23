@@ -10,7 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-jest.dontMock('../UnreadThreadStore');
+jest.dontMock('../ChartStore');
 jest.dontMock('object-assign');
 
 describe('UnreadThreadStore', function() {
@@ -20,8 +20,8 @@ describe('UnreadThreadStore', function() {
   var callback;
 
   beforeEach(function() {
-    ChatAppDispatcher = require('../../dispatcher/ChatAppDispatcher');
-    UnreadThreadStore = require('../UnreadThreadStore');
+    ChatAppDispatcher = require('../../dispatcher/AnalyticsAppDispatcher');
+    UnreadThreadStore = require('../ChartStore');
     callback = ChatAppDispatcher.register.mock.calls[0][0];
   });
 
@@ -29,16 +29,5 @@ describe('UnreadThreadStore', function() {
     expect(ChatAppDispatcher.register.mock.calls.length).toBe(1);
   });
 
-  it('provides the unread thread count', function() {
-    var ThreadStore = require('../ThreadStore');
-    ThreadStore.getAll.mockReturnValueOnce(
-      {
-        foo: {lastMessage: {isRead: false}},
-        bar: {lastMessage: {isRead: false}},
-        baz: {lastMessage: {isRead: true}}
-      }
-    );
-    expect(UnreadThreadStore.getCount()).toBe(2);
-  });
 
 });

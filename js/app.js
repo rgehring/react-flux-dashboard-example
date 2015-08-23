@@ -19,7 +19,7 @@ var Team = require("./components/pages/team/Page.react") ;
 var MissingPage = require("./components/pages/404/Page.react") ;
 var ErrorPage = require("./components/pages/500/Page.react") ;
 // Utils
-var SeedMockAPI = require('./SeedMockAPI');
+var SeedMockAPI = require('./utils/SeedMockAPI');
 
 // declare routes
 var routes = (
