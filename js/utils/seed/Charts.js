@@ -1,3 +1,4 @@
+
 var lineChartData = {
   model: "lineChart",
   options: {
@@ -30,68 +31,67 @@ var lineChartData = {
 };
 
 module.exports = {
-  seed: function() {
-    localStorage.setItem('listChartsSuccess', JSON.stringify( {
-      meta: {
-        page: 1,
-        per_page: 10,
-        total_pages: 1,
-        total_hits: 6,
-        team_slug: 'media_analytics',
-        team_id: 't_1',
-        report_slug: 'global_media_kpis', 
-        report_id: 'r_1',
+  LIST_CHARTS_SUCCESS: {    
+    meta: {
+      page: 1,
+      per_page: 10,
+      total_pages: 1,
+      total_hits: 6,
+      team_slug: 'media_analytics',
+      team_id: 't_1',
+      report_slug: 'global_media_kpis', 
+      report_id: 'r_1',
+    },
+    charts: [ 
+     {
+        id: 'c_1',
+        bootstrap_grid_width: 12,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
       },
-      charts: [ 
-       {
-          id: 'c_1',
-          bootstrap_grid_width: 12,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        },
-        {
-          id: 'c_2',
-          bootstrap_grid_width: 6,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        },
-        {
-          id: 'c_3',
-          bootstrap_grid_width: 6,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        },
-        {
-          id: 'c_4',
-          bootstrap_grid_width: 4,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        },
-        {
-          id: 'c_5',
-          bootstrap_grid_width: 4,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        },
-        {
-          id: 'c_6',
-          bootstrap_grid_width: 4,
-          created_at: Date.now() - 99999,
-          sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
-          library: "nvd3",
-          data: lineChartData
-        }
-      ]}));
+      {
+        id: 'c_2',
+        bootstrap_grid_width: 6,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
+      },
+      {
+        id: 'c_3',
+        bootstrap_grid_width: 6,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
+      },
+      {
+        id: 'c_4',
+        bootstrap_grid_width: 4,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
+      },
+      {
+        id: 'c_5',
+        bootstrap_grid_width: 4,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
+      },
+      {
+        id: 'c_6',
+        bootstrap_grid_width: 4,
+        created_at: Date.now() - 99999,
+        sql_query: "SELECT * FROM MEDIA_ANALYTICS.AGG_KPI_1_CHART;",
+        library: "nvd3",
+        data: lineChartData
+      }
+    ]
   }
 };
 

@@ -1,8 +1,5 @@
 module.exports = {
-  seed: function() {
-    // list teams 
-    localStorage.setItem('listTeamsSuccess', JSON.stringify([
-      {
+  LIST_TEAMS_SUCCESS : [{
         id: 't_1',
         name: 'Media Analytics',
         slug: "media_analytics",
@@ -59,7 +56,6 @@ module.exports = {
           ]
         }
       }
-    ]));
-  }
+    ]
 };
 

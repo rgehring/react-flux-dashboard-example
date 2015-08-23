@@ -11,14 +11,22 @@
  */
 
 jest.dontMock('../ChartStore');
+jest.dontMock('../../utils/seed/Charts');
 jest.dontMock('object-assign');
 
 describe('ChartStore', function() {
 
+  var AnalyticsConstants = require('../../constants/AnalyticsConstants');
+  var callback;
+  var ListChartsSuccess ;
   var AnalyticsAppDispatcher;
   var ChartStore;
-  var callback;
-
+  var  ChartStubs = require('../../utils/seed/Charts');
+  var ListChartsActionStub = {
+    type: AnalyticsConstants.ActionTypes.LIST_CHARTS,
+    data: ChartStubs.LIST_CHARTS_SUCCESS
+  };
+  
   beforeEach(function() {
     AnalyticsAppDispatcher = require('../../dispatcher/AnalyticsAppDispatcher');
     ChartStore = require('../ChartStore');
@@ -29,8 +37,15 @@ describe('ChartStore', function() {
     expect(AnalyticsAppDispatcher.register.mock.calls.length).toBe(1);
   });
 
-  it('provides the chart list', function() {
-    expect(2).toBe(2);
+  it('initializes with no charts', function() {
+    var all = ChartStore.getChartList();
+     expect(all).toEqual( [] ); 
+  });
+
+  it('creates chart data from list action', function() {
+    callback( ListChartsActionStub );
+    var chartList = ChartStore.getChartList() ;
+    expect(chartList.length ).toEqual( 6 ) ;
   });
 
 });

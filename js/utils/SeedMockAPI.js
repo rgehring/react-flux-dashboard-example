@@ -19,10 +19,9 @@ var Charts = require('./seed/Charts');
 module.exports = {
   init: function() {
     localStorage.clear();
-    Users.seed();
-    Teams.seed();
-    Sessions.seed();
-    Reports.seed();
-    Charts.seed();
+    localStorage.setItem("listChartsSuccess", JSON.stringify(Charts.LIST_CHARTS_SUCCESS  ));
+    localStorage.setItem("listTeamsSuccess", JSON.stringify(Teams.LIST_TEAMS_SUCCESS ));
+    localStorage.setItem("listUsersSuccess", JSON.stringify(Users.LIST_USERS_SUCCESS ));
+    localStorage.setItem("createSessionSuccess", JSON.stringify(Sessions.CREATE_SESSION_SUCCESS ));
   }
 };
