@@ -18,6 +18,7 @@ var SessionStore = require( '../../../stores/SessionStore');
 var ChartStore = require( '../../../stores/ChartStore');
 var RequestActionCreators = require('../../../actions/ClientRequestActionCreators');
 
+var Chart = require('./Chart.react');
 
 var Loader = React.createClass({ 
   render: function() {
@@ -26,87 +27,6 @@ var Loader = React.createClass({
     ) ;
   }
 });
-
-
-
-var Chart = React.createClass({
-  handleDataInXYArrayFormat: function(x_array, y_array) {
-    var out = [];
-    for (i=0; i < x_array.length ; ++i) {
-      out.push({x: x_array[i] , y: y_array[i] }) ;
-    } 
-    return out ;
-  },
-  processData: function(data) {
-    var self = this ;
-    out = [] ;
-    for ( i=0; i < data.length ; ++i   ) {
-      var data_copy = $.extend(true, {}, data[i] )  ;
-      delete data_copy.x_values ;
-      delete data_copy.y_values ;
-      data_copy["values"] = self.handleDataInXYArrayFormat( data[i].x_values, data[i].y_values ) ;
-      out.push(data_copy);
-    }
-    console.log("out");
-    console.log(out);
-    return out ;
-  },
-
-  componentDidMount: function() {
-    this.renderChart();
-  },
-
-  selectModel: function(model) {
-    switch(model) {
-    case "boxPlot":
-      return nv.models.boxPlot();
-    case "distribution":
-      return nv.models.distribution();
-    case "lineChart":
-      return nv.models.lineChart();
-    case "multiBarChart":
-      return nv.models.multiBarChart();
-    case "pieChart":
-      return nv.models.pieChart();
-    case "scatterChart":
-      return nv.models.scatterChart();
-    case "stackedAreaChart":
-      return nv.models.stackedAreaChart();
-    case "sunburstChart":
-      return nv.models.sunburstChart();
-    default:
-      return nv.models.lineChart();
-    }
-  },
-
-  renderChart: function( ) {
-    var self = this ;
-    var chartIdLookup = "#chart-".concat(self.props.data.id) ;
-    var chartData = ChartStore.getChart(self.props.data.id);
-    
-    nv.addGraph(function() {
-      var chart = self.selectModel(chartData.data.model).options(chartData.data.options);
-      console.log("CHART DATA INPUT");
-      console.log(chartData.data.data);
-      var data = self.processData(chartData.data.data);
-      console.log("CHART DATA");
-      console.log(data);
-      d3.select(chartIdLookup)
-          .datum(data)
-          .call(chart);
-      nv.utils.windowResize(chart.update);
-    });
-  },
-
-  render: function() {
-    var chartIdProp = "chart-".concat(this.props.data.id) ;
-    return ( 
-     <svg id={ chartIdProp }> </svg>
-    ) ;
-  }
-
-});
-
 
 var ChartListWrapper = React.createClass({ 
 
